@@ -1,0 +1,26 @@
+---
+export const prerender = true;
+import Layout from "@/layouts/Layout.astro";
+import type { EmbeddedHtml } from "@/types/EmbeddedHtml";
+import { getEvent } from "@/utils/sanity";
+import { findComponents } from "@/utils/utils";
+
+const event = await getEvent("2024-11-01-give-the-gift-of-a-happy-holiday");
+let htmls = null;
+if (event) {
+  htmls = findComponents(
+    event.blocks,
+    (c) => c._type === "embeddedHtml"
+  ) as EmbeddedHtml[];
+}
+---
+
+<Layout title="Matching Gifts">
+  <main>
+    <p><a href="/">Go Back</a></p>
+    <h1>{event.title}</h1>
+    <div>
+      {htmls && htmls.length > 0 && <div set:html={htmls[0].html} />}
+    </div>
+  </main>
+</Layout>
