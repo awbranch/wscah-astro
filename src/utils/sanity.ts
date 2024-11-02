@@ -3,7 +3,6 @@ import type { News } from "@/types/News";
 import type { Page } from "@/types/Page";
 
 import { createClient } from "@sanity/client";
-import { I } from "dist/_worker.js/chunks/astro/env-setup_DUaZ-hTo.mjs";
 
 const SANITY_PROJECT_ID = "n427st2j";
 const SANITY_DATASET = "production";
